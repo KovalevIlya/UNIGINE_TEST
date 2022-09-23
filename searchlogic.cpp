@@ -1,4 +1,5 @@
 #include "searchlogic.h"
+#include "searchdialog.h"
 #include "global.h"
 
 #include <QtConcurrent/QtConcurrent>
@@ -19,6 +20,9 @@ SearchLogic::SearchLogic(QObject *parent) : QObject(parent)
 
 void SearchLogic::selectFiles()
 {
+    if (_files.isEmpty())
+        return;
+
     auto compare = [](std::pair<QString, int> left, std::pair<QString, int> right) {
         return left.second > right.second;
     };
@@ -45,12 +49,18 @@ void SearchLogic::startSearch(const QString &startDir)
     _stop = false;
     _files.clear();
 
+    auto dialog = new SearchDialog();
+    connect(this, &SearchLogic::progressIncrement, dialog, &SearchDialog::progressIncrement);
+    connect(dialog, &SearchDialog::canceled, this, &SearchLogic::stopSearch);
+
     auto _globalFuture = QtConcurrent::run(_threadPool, this, &SearchLogic::search, startDir);
 
     while (!_globalFuture.isFinished())
         QApplication::processEvents();
 
     selectFiles();
+
+    dialog->cancel();
 }
 
 void SearchLogic::stopSearch()
@@ -91,6 +101,7 @@ void SearchLogic::search(const QString &startDir)
         }
 
         addFile(file.fileName());
+        emit progressIncrement();
     }
 
     synchronizer.waitForFinished();
