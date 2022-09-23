@@ -18,7 +18,7 @@ public:
     Q_SLOT void startSearch(const QString &startDir);
     Q_SLOT void stopSearch();
 
-    Q_SIGNAL void finishSearch(const QVector<QPair<QString, int>> &);
+    Q_SIGNAL void finishSearch(const QVector<std::pair<QString, int>> &);
 
 private:
     void addFile(const QString &fileName);

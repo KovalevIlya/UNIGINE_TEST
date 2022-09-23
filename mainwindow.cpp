@@ -16,8 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(makeCentralWidget());
 
     auto searchLogic = new SearchLogic(this);
-    connect(this, &MainWindow::startSearch, searchLogic, &SearchLogic::startSearch);
 
+    connect(this, &MainWindow::startSearch, searchLogic, &SearchLogic::startSearch);
     connect(searchLogic, &SearchLogic::finishSearch, this, &MainWindow::setFiles);
     connect(qApp, &QGuiApplication::lastWindowClosed, searchLogic, &SearchLogic::stopSearch);
 }
@@ -26,7 +26,7 @@ MainWindow::~MainWindow()
 {
 }
 
-void MainWindow::setFiles(const QVector<QPair<QString, int>> &files)
+void MainWindow::setFiles(const QVector<std::pair<QString, int>> &files)
 {
     auto countFiles = files.count();
     for (int i = 0; i < countDisplayedFiles, i < countFiles; ++i) {

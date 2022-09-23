@@ -23,7 +23,6 @@ void SearchLogic::selectFiles()
         return left.second > right.second;
     };
 
-
     QList<std::pair<QString, int>> files;
     for (auto i = _files.keyValueBegin(); i != _files.keyValueEnd(); ++i) {
         files.append(*i);
@@ -31,11 +30,11 @@ void SearchLogic::selectFiles()
 
     std::sort(files.begin(), files.end(), compare);
 
-    QVector<QPair<QString, int>> result;
+    QVector<std::pair<QString, int>> result;
     result.reserve(countDisplayedFiles);
 
     for (int i = 0; i < files.count(), i < countDisplayedFiles; ++i) {
-        result.append({files[i].first, files[i].second});
+        result.append(files[i]);
     }
 
     emit finishSearch(result);
