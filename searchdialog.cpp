@@ -4,7 +4,6 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-
 SearchDialog::SearchDialog()
     : QProgressDialog("Searching for files", "Stop searching", 0, 0)
 {
