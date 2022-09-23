@@ -7,7 +7,6 @@
 #include <QLayout>
 #include <QLabel>
 #include <QGroupBox>
-#include <QLineEdit>
 #include <QTableWidget>
 
 MainWindow::MainWindow(QWidget *parent)
