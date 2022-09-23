@@ -17,11 +17,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    searchlogic.cpp
 
 HEADERS += \
     global.h \
-    mainwindow.h
+    mainwindow.h \
+    searchlogic.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

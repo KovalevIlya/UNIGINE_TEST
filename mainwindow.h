@@ -13,7 +13,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    Q_SLOT void setFiles(const QVector<QPair<QString, int>> &files);
+    Q_SLOT void setFiles(const QVector<std::pair<QString, int>> &files);
 
     Q_SIGNAL void startSearch(const QString &startDir);
 
