@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+class QTableWidget;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -10,5 +12,15 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    Q_SLOT void setFiles(const QVector<QPair<QString, int>> &files);
+
+    Q_SIGNAL void startSearch(const QString &startDir);
+
+private:
+    QWidget *makeCentralWidget();
+
+    QTableWidget *_tabel;
+    QString _dirName;
 };
 #endif // MAINWINDOW_H
