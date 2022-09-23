@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    searchdialog.cpp \
     searchlogic.cpp
 
 HEADERS += \
     global.h \
     mainwindow.h \
+    searchdialog.h \
     searchlogic.h
 
 # Default rules for deployment.
